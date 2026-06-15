@@ -3,6 +3,8 @@ package com.som.bookservice.service;
 import com.som.bookservice.entity.Book;
 import com.som.bookservice.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,5 +83,17 @@ public class BookService {
         );
 
         return "Book Deleted Successfully";
+    }
+
+    public Page<Book> getBooks(
+            int page,
+            int size) {
+
+        return bookRepository.findAll(
+                PageRequest.of(
+                        page,
+                        size
+                )
+        );
     }
 }

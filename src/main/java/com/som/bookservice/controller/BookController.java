@@ -3,6 +3,7 @@ package com.som.bookservice.controller;
 import com.som.bookservice.entity.Book;
 import com.som.bookservice.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +57,25 @@ public class BookController {
 
         return bookService.deleteBook(
                 id
+        );
+    }
+
+    @GetMapping("/page")
+    public Page<Book> getBooks(
+
+            @RequestParam(
+                    defaultValue = "0"
+            )
+            int page,
+
+            @RequestParam(
+                    defaultValue = "5"
+            )
+            int size) {
+
+        return bookService.getBooks(
+                page,
+                size
         );
     }
 }
