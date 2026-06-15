@@ -1,5 +1,6 @@
 package com.som.bookservice.service;
 
+import com.som.bookservice.client.UserClient;
 import com.som.bookservice.entity.Book;
 import com.som.bookservice.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,14 @@ public class BookService {
 
     private final BookRepository
             bookRepository;
+
+    private final UserClient userClient;
+
+    public String testUserService() {
+
+        return userClient
+                .getUserServiceMessage();
+    }
 
     public Book createBook(
             Book book) {

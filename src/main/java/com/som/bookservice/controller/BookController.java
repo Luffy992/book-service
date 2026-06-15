@@ -78,4 +78,11 @@ public class BookController {
                 size
         );
     }
+
+    @GetMapping("/test-user")
+    public String testUserService() {
+
+        return bookService
+                .testUserService();
+    }
 }
