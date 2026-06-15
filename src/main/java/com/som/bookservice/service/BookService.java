@@ -38,4 +38,48 @@ public class BookService {
                         )
                 );
     }
+
+    public Book updateBook(
+            Long id,
+            Book updatedBook) {
+
+        Book book =
+                bookRepository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "Book not found"
+                                )
+                        );
+
+        book.setTitle(
+                updatedBook.getTitle()
+        );
+
+        book.setAuthor(
+                updatedBook.getAuthor()
+        );
+
+        book.setPrice(
+                updatedBook.getPrice()
+        );
+
+        book.setStock(
+                updatedBook.getStock()
+        );
+
+        return bookRepository.save(
+                book
+        );
+    }
+
+    public String deleteBook(
+            Long id) {
+
+        bookRepository.deleteById(
+                id
+        );
+
+        return "Book Deleted Successfully";
+    }
 }
